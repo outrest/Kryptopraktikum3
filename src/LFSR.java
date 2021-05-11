@@ -6,10 +6,10 @@ public class LFSR {
     private int[] polynom;
     private boolean d_zustaende[];
 
-    public LFSR(int[] polynom){
+    public LFSR(int[] polynom) {
         OptionalInt toppolynom = Arrays.stream(polynom).max();
         int maxwert = 0;
-        if (toppolynom.isPresent()){
+        if (toppolynom.isPresent()) {
             maxwert = toppolynom.getAsInt();
         }
         states = new boolean[maxwert];
