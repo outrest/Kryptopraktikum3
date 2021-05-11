@@ -11,7 +11,7 @@ public class LFSR {
         if (toppolynom.isPresent()){
             maxwert = toppolynom.getAsInt();
         }
-        states = new boolean[];
+        states = new boolean[maxwert+1];
 
     }
 }
