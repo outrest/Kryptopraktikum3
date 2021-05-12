@@ -4,7 +4,6 @@ import java.util.OptionalInt;
 public class LFSR {
     private boolean[] states;
     private int[] polynom;
-    private boolean d_zustaende[];
 
     public LFSR(int[] polynom) {
         OptionalInt toppolynom = Arrays.stream(polynom).max();
@@ -13,12 +12,15 @@ public class LFSR {
             maxwert = toppolynom.getAsInt();
         }
         states = new boolean[maxwert];
+        this.polynom=polynom;
+
     }
 
     public int translate_states(int a) { // Wandle 'S' in 'D' Zustände um
         return states.length - a;
     }
 
+    //Der Output des LFSR kommt zurück
     public boolean shift() { // Aufruf in jeder Iteration, um die Zustände um eine Postition zu verschieben
         boolean save = states[0];
         boolean neuer_Zustand = xorstate();
@@ -43,20 +45,25 @@ public class LFSR {
         Byteconverter helper = new Byteconverter();
         int j = states.length - 1;
         for (byte etwas : helper.toBit_Byte(feld)) {
-            if (etwas == 1)
-                states[j--] = true;
-            else {
-                states[j--] = false;
-            }
+            states[j--] = etwas == 1;
         }
     }
+
     //AKTUELLE ZUSTÄNDE AUSGEBEN
-    public String toString(){
-        return null;
+    public String toString() {
+        return Arrays.toString(states);
     }
 
     //Soll i-mal das LFSR laufen lassen und dann einen String mit den erzeugten Outputs angeben
-    public String shift_(int i){
-        return null;
+    public String shift(int i) {
+        if (i <= 0)
+            throw new IllegalArgumentException("0 und kleiner geht nicht");
+        StringBuilder result = new StringBuilder();
+        while (i > 0) {
+            //Shift==True? dann 1, sonst  0
+            result.append(shift() ? 1 : 0);
+            i--;
+        }
+        return result.toString();
     }
 }
