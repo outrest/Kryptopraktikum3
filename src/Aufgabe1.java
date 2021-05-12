@@ -19,14 +19,16 @@ public class Aufgabe1 {
 
         //b
         LFSR aufgabeB = new LFSR(polynom);
-        aufgabeB.initialize(initialWert);
-        boolean[] saveStates = aufgabeB.getStates();
         aufgabeA.initialize(initialWert);
+        aufgabeB.initialize(initialWert);
+
+        boolean[] saveStates = aufgabeB.getStates();
+
         int count = 0;
         boolean[] tmp = new boolean[21];
         aufgabeA.shift();
         count++;
-        while(!(saveStates.equals(tmp))){
+        while(!(Arrays.equals(saveStates, tmp))){
             aufgabeA.shift();
             tmp= aufgabeA.getStates();
             count++;
