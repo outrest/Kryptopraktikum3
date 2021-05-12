@@ -4,6 +4,8 @@ public class Aufgabe1 {
     public static void main(String[] args) {
         int[] polynom = {21, 2};
         LFSR aufgabeA = new LFSR(polynom);
+        int initialWert = 0x1FFFFF;
+        String vergleichsWert = "1111111111111111111110011001100110011001101001011010010110100100";
 
         aufgabeA.initialize(initialWert); //2097151 oder 111111111111111111111
 

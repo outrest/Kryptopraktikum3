@@ -41,9 +41,13 @@ public class LFSR {
     public void initialize(int i) {
         String binString = Integer.toBinaryString(i);
         int j = states.length - 1;
-        for (byte etwas : helper.toBit_Byte(feld)) {
-            states[j--] = etwas == 1;
+        for (int k = 0; k < binString.length(); k++) {
+            states[j--] = binString.charAt(k)=='1'; // vergleiche mit dem char 1, nich?
         }
+    }
+
+    public boolean[] getStates() {
+        return states;
     }
 
     //AKTUELLE ZUSTÄNDE AUSGEBEN
