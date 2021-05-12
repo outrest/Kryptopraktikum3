@@ -12,7 +12,7 @@ public class LFSR {
             maxwert = toppolynom.getAsInt();
         }
         states = new boolean[maxwert];
-        this.polynom=polynom;
+        this.polynom = polynom;
 
     }
 
@@ -39,10 +39,7 @@ public class LFSR {
     }
 
     public void initialize(int i) {
-        Integer conv = i;
-        byte[] feld = new byte[1];
-        feld[0] = conv.byteValue();
-        Byteconverter helper = new Byteconverter();
+        String binString = Integer.toBinaryString(i);
         int j = states.length - 1;
         for (byte etwas : helper.toBit_Byte(feld)) {
             states[j--] = etwas == 1;
