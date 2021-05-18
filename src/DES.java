@@ -9,19 +9,24 @@ public class DES {
 
     public boolean verify() {
         return true;
+    }// for 0- 63 do
+    public boolean checkMyShit(byte input, SBox box){
+return true;
     }
 
-    public byte getXORPartnerSum(byte input,byte output) {
+    public byte count(byte input, byte output) { //
         byte count = 0;
         if (input == 0 && output == 0)
             return 64;
-        for (byte i = 0; i < 64; i++) {
-            for (byte j = 0; i < 64; i++) {
-                if ((i^j) == output)
-                    count++;
+
+        for (int k = 0; k < 16; k++) {
+            if ((input ^ k) == output) {
+                count++;
+                System.out.println(k);
             }
         }
-    return count;}
+        return count;
+    }
 
     public void checkLineAverage(byte[] b) {
         float avg = 0;
@@ -29,8 +34,9 @@ public class DES {
             avg += a;
         }
         avg = avg / (float) b.length + 1;
-        if (avg != 64)
-            throw new IllegalArgumentException("ZEILENSUMME != 64");
+        System.out.println("AVG = " + avg);
+        if (!(3 < avg && avg < 5))
+            throw new IllegalArgumentException("ZEILENDURCHSCHNITT != Definitionsbereich, nich?");
         //return (avg/(float)b.length+1);
 
     }
@@ -44,25 +50,4 @@ public class DES {
             throw new IllegalArgumentException("ZEILENSUMME != 64");
     }
 
-    public byte[] calcIndex(byte input) {
-        return new byte[]{outerBits(input), innerBits(input)};
-    }
-
-    public static void check6BitInput(byte b) {
-        if (b >= 64)
-            throw new IllegalArgumentException();
-    }
-
-    public byte innerBits(byte b) {
-        check6BitInput(b);
-        byte ret = (byte) (b >> 2); // 001111
-        return ret;
-    }
-
-    public byte outerBits(byte b) {
-        check6BitInput(b);
-        byte ret = (byte) (b & 1);
-        ret += (byte) ((b >> 5) & 1) << 1;
-        return ret;
-    }
 }
