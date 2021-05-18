@@ -12,27 +12,15 @@ public class Aufgabe2 {
         byte[][] testTabelle = new byte[64][16];
 
         for (byte i = 0; i < 64; i++) {
-                byte trigger = sBox1.trigger(i);
-                ergebnisse[i] = trigger;
-
-
-                testTabelle[i][trigger]+=1;
-
-
+            for (byte j = 0; j < 64; j++) {
+                byte diffBefore = (byte) (i ^ j);
+                byte diffAfter = (byte) (sBox1.trigger(i) ^ sBox1.trigger(j));
+                testTabelle[diffBefore][diffAfter]++;
+            }
         }
-        System.out.println(Arrays.toString(ergebnisse));
-       // System.out.println(Arrays.deepToString(testTabelle));
-
-
-
-
-
-        byte[] gesamtVorkommen = new byte[16];
-        for (byte c : ergebnisse) {
-            gesamtVorkommen[c] += 1;
+        for (byte[] feld : testTabelle) {
+            System.out.println(Arrays.toString(feld));
         }
-        System.out.println(Arrays.toString(gesamtVorkommen));
-
     }
 }
 // Zeilenweise Summe = 64
