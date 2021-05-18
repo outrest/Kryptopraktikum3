@@ -11,7 +11,7 @@ public class Aufgabe2 {
         System.out.println(sbox1.outerBits((byte) 63));
 
 
-       System.out.println( sbox1.getXORPartnerSum((byte)(3),(byte)(0)));
+       System.out.println( sbox1.getXORPartnerSum((byte)(12),(byte)(5)));
 
 
     }
