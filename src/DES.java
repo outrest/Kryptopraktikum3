@@ -19,7 +19,23 @@ public class DES {
             if ((input ^ i) == output)
                 count++;
         }
+        /*for (byte i = 0; i < 64; i++) {
+            if ((output ^ i) == input)
+                count++;
+        }*/
         return count;
+    }
+
+    public void checkLineAverage(byte[] b){
+        float avg=0;
+        for (byte a : b) {
+            avg += a;
+        }
+        avg = avg/(float)b.length+1;
+        if (avg != 64)
+            throw new IllegalArgumentException("ZEILENSUMME != 64");
+        //return (avg/(float)b.length+1);
+
     }
 
     public void checkLineSum(byte[] b) {
